@@ -9,15 +9,11 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    include: ['**/*.test.tsx'],
-    setupFiles: ['./src/setupTest.ts'],
+    setupFiles: './src/setupTest.ts',
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@pages/': path.resolve(__dirname, './src/pages'),
-      '@widgets/': path.resolve(__dirname, './src/widgets'),
-      '@entities/': path.resolve(__dirname, './src/entities'),
     },
   },
 })

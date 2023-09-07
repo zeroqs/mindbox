@@ -1,19 +1,22 @@
 {
-  "posts": [
+  "todos": [
+    {
+      "id": 0,
+      "title": "Взять меня на работу",
+      "description": "Провести с этим пареньком собес и взять его в штат",
+      "isDone": false
+    },
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "title": "Сделать тестовое mindbox",
+      "description": "Оки доки",
+      "isDone": false
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 2,
+      "title": "Приготовить ужин",
+      "description": "Купить продукты",
+      "isDone": true
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

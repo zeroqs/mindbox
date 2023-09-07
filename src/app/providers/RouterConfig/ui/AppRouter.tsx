@@ -1,4 +1,9 @@
-import { ActionIcon, Loader, useMantineColorScheme } from '@mantine/core'
+import {
+  ActionIcon,
+  Container,
+  Loader,
+  useMantineColorScheme,
+} from '@mantine/core'
 import { IconMoonStars, IconSun } from '@tabler/icons-react'
 import { Suspense, useLayoutEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
@@ -17,14 +22,16 @@ export const AppRouter = () => {
   return (
     <main style={{ minHeight: '100dvh' }}>
       <header>
-        <ActionIcon
-          variant="outline"
-          color={dark ? 'yellow' : 'blue'}
-          onClick={() => toggleColorScheme()}
-          title="Toggle color scheme"
-        >
-          {dark ? <IconSun size="1.1rem" /> : <IconMoonStars size="1.1rem" />}
-        </ActionIcon>
+        <Container p={20}>
+          <ActionIcon
+            variant="outline"
+            color={dark ? 'yellow' : 'blue'}
+            onClick={() => toggleColorScheme()}
+            title="Toggle color scheme"
+          >
+            {dark ? <IconSun size="xl" /> : <IconMoonStars size="xl" />}
+          </ActionIcon>
+        </Container>
       </header>
       <Suspense fallback={<Loader />}>
         <Routes>
