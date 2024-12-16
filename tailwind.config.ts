@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from 'tailwindcss';
+
+export default {
   darkMode: ['class'],
   content: ['./index.html', './src/**/*.{ts,tsx,js,jsx}'],
   theme: {
@@ -53,5 +54,6 @@ module.exports = {
       }
     }
   },
+  // eslint-disable-next-line ts/no-require-imports
   plugins: [require('tailwindcss-animate')]
-};
+} satisfies Config;
