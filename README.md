@@ -1,1 +1,1 @@
-[test](https://mindbox-m3sp.vercel.app/)
+[Vercel](https://mindbox-m3sp.vercel.app/)
