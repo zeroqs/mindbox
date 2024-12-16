@@ -15,6 +15,7 @@ export const TodoList = ({ todos, onToggleTodo }:
           key={todo.id}
           onClick={() => onToggleTodo(todo.id)}
           className='py-2 cursor-pointer'
+          data-testid={`todo-item-${todo.id}`}
         >
           <TodoCard {...todo} />
         </li>

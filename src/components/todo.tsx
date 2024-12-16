@@ -6,7 +6,10 @@ export const TodoCard = ({ ...props }: Todo) => {
   return (
     <div className='flex justify-between items-center p-6 border rounded-md'>
       <p className={`leading-7 [&:not(:first-child)]:mt-6 ${completedStyle}`}>{props.title}</p>
-      <Checkbox checked={props.completed} />
+      <Checkbox
+        data-testid={`todo-item-checkbox-${props.id}`}
+        checked={props.completed}
+      />
     </div>
   );
 };

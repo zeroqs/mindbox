@@ -37,8 +37,8 @@ export const App = () => {
       <Header />
       <main className='w-[1420px] m-auto p-4'>
         <form onSubmit={handlerAddTodo} className='flex gap-6'>
-          <Input value={todoTitle} onChange={(event) => setTodoTitle(event.target.value)} placeholder='Typed todo' />
-          <Button disabled={isTodoTitleEmpty} type='submit' variant='outline' size='icon'>
+          <Input data-testid='input-todo' value={todoTitle} onChange={(event) => setTodoTitle(event.target.value)} placeholder='Typed todo' />
+          <Button data-testid='submit-todo' disabled={isTodoTitleEmpty} type='submit' variant='outline' size='icon'>
             <Plus color='orange' />
           </Button>
         </form>
