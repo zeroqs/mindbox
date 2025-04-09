@@ -7,29 +7,19 @@ import { TodoList } from '@/components/TodoList.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { initialTodos } from '@/lib/constants.ts';
-import type { Todo } from '@/types';
+import { useTodos } from '@/lib/hooks/useTodos';
 
 export const App = () => {
   const [todoTitle, setTodoTitle] = useState('');
-  const [todos, setTodos] = useState<Todo[]>(() => initialTodos);
+  const [activeTab, setActiveTab] = useState<'all' | 'active' | 'completed'>('all');
+  const { addTodo, toggleTodo, getFilteredTodos } = useTodos();
 
   const isTodoTitleEmpty = todoTitle.length === 0;
 
   const handlerAddTodo = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const newTodo = { id: todos.length + 1, title: todoTitle, completed: false };
-    setTodos((prevState) =>
-      [newTodo, ...prevState]);
+    addTodo(todoTitle);
     setTodoTitle('');
-  };
-
-  const handleToggleTodo = (id: number) => {
-    const newTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo);
-
-    setTodos(newTodos);
   };
 
   return (
@@ -37,13 +27,28 @@ export const App = () => {
       <Header />
       <main className='w-[1420px] m-auto p-4'>
         <form onSubmit={handlerAddTodo} className='flex gap-6'>
-          <Input data-testid='input-todo' value={todoTitle} onChange={(event) => setTodoTitle(event.target.value)} placeholder='Typed todo' />
-          <Button data-testid='submit-todo' disabled={isTodoTitleEmpty} type='submit' variant='outline' size='icon'>
+          <Input
+            data-testid='input-todo'
+            value={todoTitle}
+            onChange={(event) => setTodoTitle(event.target.value)}
+            placeholder='Typed todo'
+          />
+          <Button
+            data-testid='submit-todo'
+            disabled={isTodoTitleEmpty}
+            type='submit'
+            variant='outline'
+            size='icon'
+          >
             <Plus color='orange' />
           </Button>
         </form>
 
-        <Tabs defaultValue='all' className='mt-6'>
+        <Tabs
+          value={activeTab}
+          onValueChange={(value) => setActiveTab(value as typeof activeTab)}
+          className='mt-6'
+        >
           <TabsList>
             <TabsTrigger value='all'>All</TabsTrigger>
             <TabsTrigger value='active'>Active</TabsTrigger>
@@ -51,24 +56,26 @@ export const App = () => {
           </TabsList>
 
           <TabsContent value='all'>
-            <TodoList todos={todos} onToggleTodo={handleToggleTodo} />
+            <TodoList
+              todos={getFilteredTodos('all')}
+              onToggleTodo={toggleTodo}
+            />
           </TabsContent>
 
           <TabsContent value='active'>
             <TodoList
-              todos={todos.filter((todo) => !todo.completed)}
-              onToggleTodo={handleToggleTodo}
+              todos={getFilteredTodos('active')}
+              onToggleTodo={toggleTodo}
             />
           </TabsContent>
 
           <TabsContent value='completed'>
             <TodoList
-              todos={todos.filter((todo) => todo.completed)}
-              onToggleTodo={handleToggleTodo}
+              todos={getFilteredTodos('completed')}
+              onToggleTodo={toggleTodo}
             />
           </TabsContent>
         </Tabs>
-
       </main>
     </>
   );

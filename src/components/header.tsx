@@ -1,4 +1,4 @@
-import { ModeToggle } from '@/components/mode-toggle.tsx';
+import { ModeToggle } from './mode-toggle';
 
 export const Header = () => {
   return (

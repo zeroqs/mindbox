@@ -1,0 +1,5 @@
+{
+  "typescript": true,
+  "hookPath": "@/shared/hooks",
+  "utilsPath": "@/utils/helpers"
+}
